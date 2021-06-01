@@ -17,5 +17,6 @@ namespace ReservationAPI.Data
         public DbSet<Reservation> Reservations { set; get; }
         public DbSet<ReservationMenuItems> ReservationMenuItems { set; get; }
         
+
     }
 }   

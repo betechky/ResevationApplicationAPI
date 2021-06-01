@@ -8,12 +8,10 @@ namespace ReservationAPI.Model
 {
     public class MenuItem
     {
-        [Key]
-        [Required]
-        public int id { get; set; }
-        [Required]
+        public int MenuItemID { get; set; }
+      
         public string Name { get; set; }
-        [Required]
+  
         public double Price { get; set; }
     }
 }

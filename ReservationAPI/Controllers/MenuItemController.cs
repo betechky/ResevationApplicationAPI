@@ -33,7 +33,6 @@ namespace ReservationAPI.Controllers
             var menuItem = _dbContext.MenuItems.Find(id);
             return menuItem;
         }
-
         // POST api/<MenuItemController>
         [HttpPost]
         public void Post([FromBody] MenuItem menuItem)
@@ -65,5 +64,6 @@ namespace ReservationAPI.Controllers
 
 
         }
+
     }
 }

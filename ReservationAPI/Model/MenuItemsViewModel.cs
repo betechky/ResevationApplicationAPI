@@ -7,6 +7,7 @@ namespace ReservationAPI.Model
 {
     public class MenuItemsViewModel
     {
+        internal int id;
         public int Id { get; set; }
         public string Name { set; get; }
         public double Price { get; set; }

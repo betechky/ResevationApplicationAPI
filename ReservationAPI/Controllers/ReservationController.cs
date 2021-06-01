@@ -60,5 +60,7 @@ namespace ReservationAPI.Controllers
             _dbContext.MenuItems.Remove(reservation);
             _dbContext.SaveChanges();
         }
+
+
     }
 }

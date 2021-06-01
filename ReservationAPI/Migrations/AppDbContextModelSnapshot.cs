@@ -21,63 +21,30 @@ namespace ReservationAPI.Migrations
 
             modelBuilder.Entity("ReservationAPI.Model.MenuItem", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("MenuItemID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<int?>("Reservationid")
+                    b.Property<int?>("ReservationID")
                         .HasColumnType("int");
 
-                    b.HasKey("id");
+                    b.HasKey("MenuItemID");
 
-                    b.HasIndex("Reservationid");
+                    b.HasIndex("ReservationID");
 
                     b.ToTable("MenuItems");
-
-                    b.HasData(
-                        new
-                        {
-                            id = 1,
-                            Name = "Salad",
-                            Price = 5.0
-                        },
-                        new
-                        {
-                            id = 2,
-                            Name = "Salmon",
-                            Price = 25.0
-                        },
-                        new
-                        {
-                            id = 3,
-                            Name = "Mango shake",
-                            Price = 5.0
-                        },
-                        new
-                        {
-                            id = 4,
-                            Name = "Shawarma",
-                            Price = 12.0
-                        },
-                        new
-                        {
-                            id = 5,
-                            Name = "Burger steak",
-                            Price = 7.0
-                        });
                 });
 
             modelBuilder.Entity("ReservationAPI.Model.Reservation", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("ReservationID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -89,29 +56,9 @@ namespace ReservationAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
+                    b.HasKey("ReservationID");
 
                     b.ToTable("Reservations");
-
-                    b.HasData(
-                        new
-                        {
-                            id = 1,
-                            Date = new DateTime(2021, 5, 25, 1, 40, 29, 544, DateTimeKind.Local).AddTicks(9355),
-                            Name = "Enzo"
-                        },
-                        new
-                        {
-                            id = 2,
-                            Date = new DateTime(2021, 5, 25, 1, 40, 29, 551, DateTimeKind.Local).AddTicks(4370),
-                            Name = "Aaliyah"
-                        },
-                        new
-                        {
-                            id = 3,
-                            Date = new DateTime(2021, 5, 25, 1, 40, 29, 551, DateTimeKind.Local).AddTicks(4436),
-                            Name = "Joemarie"
-                        });
                 });
 
             modelBuilder.Entity("ReservationAPI.Model.ReservationMenuItems", b =>
@@ -121,47 +68,39 @@ namespace ReservationAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("MenuItemId")
+                    b.Property<int>("MenuItemID")
                         .HasColumnType("int");
 
-                    b.Property<int>("ReservationId")
+                    b.Property<int>("ReservationID")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MenuItemId");
+                    b.HasIndex("MenuItemID");
 
-                    b.HasIndex("ReservationId");
+                    b.HasIndex("ReservationID");
 
                     b.ToTable("ReservationMenuItems");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            MenuItemId = 1,
-                            ReservationId = 1
-                        });
                 });
 
             modelBuilder.Entity("ReservationAPI.Model.MenuItem", b =>
                 {
                     b.HasOne("ReservationAPI.Model.Reservation", null)
                         .WithMany("MenuItems")
-                        .HasForeignKey("Reservationid");
+                        .HasForeignKey("ReservationID");
                 });
 
             modelBuilder.Entity("ReservationAPI.Model.ReservationMenuItems", b =>
                 {
                     b.HasOne("ReservationAPI.Model.MenuItem", "MenuItem")
                         .WithMany()
-                        .HasForeignKey("MenuItemId")
+                        .HasForeignKey("MenuItemID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ReservationAPI.Model.Reservation", "Reservation")
                         .WithMany()
-                        .HasForeignKey("ReservationId")
+                        .HasForeignKey("ReservationID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
